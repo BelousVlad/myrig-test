@@ -8,5 +8,5 @@
     <body>
         <div id="root"></div>
     </body>
-    <script src="js/index_bundle.js"></script>
+    <script src="/dist/js/index_bundle.js"></script>
 </html>
