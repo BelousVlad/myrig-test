@@ -21,8 +21,16 @@ class EmployeeFactory extends Factory
      */
     public function definition()
     {
+        // var_dump($this->faker->unixTime());
+        // var_dump(now());
         return [
-            //
+            'first_name' => $this->faker->firstName(),
+            'last_name' => $this->faker->lastName(),
+            'date_of_birth' => $this->faker->date(),
+            'weight' => $this->faker->randomNumber(3, false),
+            'height' => $this->faker->numberBetween(100, 250),
+            'salary' => $this->faker->randomNumber(4, true),
+            'position_id' => $this->faker->numberBetween(1,4),
         ];
     }
 }

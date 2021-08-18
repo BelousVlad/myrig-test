@@ -22,7 +22,7 @@ class CreateEmployeesTable extends Migration
             $table->integer('height');
             $table->integer('salary');
             $table->unsignedBigInteger('position_id');
-            $table->timestamps();
+            // $table->timestamps();
 
             $table->foreign('position_id')->references('id')->on('positions');
         });

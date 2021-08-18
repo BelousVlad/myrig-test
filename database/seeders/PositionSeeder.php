@@ -15,16 +15,20 @@ class PositionSeeder extends Seeder
      */
     public function run()
     {
-        Position::create([
+        Position::updateOrCreate([
+            'id' => 1,
             'title' => 'Developer'
         ]);
-        Position::create([
+        Position::updateOrCreate([
+            'id' => 2,
             'title' => 'QA '
         ]);
-        Position::create([
+        Position::updateOrCreate([
+            'id' => 3,
             'title' => 'Accountant'
         ]);
-        Position::create([
+        Position::updateOrCreate([
+            'id' => 4,
             'title' => 'Manager'
         ]);
     }
