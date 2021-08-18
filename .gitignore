@@ -3,7 +3,7 @@
 /public/storage
 /storage/*.key
 /vendor
-.env
+#.env
 .env.backup
 .phpunit.result.cache
 docker-compose.override.yml
@@ -15,4 +15,4 @@ yarn-error.log
 /.vscode
 
 resources/dist/
-public/js/index_bundle.js
+public/dist/
