@@ -26,7 +26,6 @@ class EmployeeTest extends TestCase
                     ->where('height', $employee->height)
                     ->where('salary', $employee->salary)
                     ->where('position_id', $employee->position_id)
-                    ->etc()
             );
     }
 

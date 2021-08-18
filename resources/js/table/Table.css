@@ -1,0 +1,18 @@
+.table {
+    width: 100%;
+    border-spacing: 0;
+    box-shadow: 0 4px 10px 0 rgb(0 0 0 / 10%);
+}
+.table th {
+    text-align: left;
+}
+.table td,
+.table th {
+    padding: 12px 15px;
+}
+.table thead {
+    background: #f0f0f0;
+}
+.table tbody tr:nth-child(2n) {
+    background: #fafafa;
+}
