@@ -25,7 +25,7 @@ class EmployeeTest extends TestCase
                     ->where('weight', $employee->weight)
                     ->where('height', $employee->height)
                     ->where('salary', $employee->salary)
-                    ->where('position_id', $employee->position_id)
+                    ->where('position', $employee->position->title)
             );
     }
 

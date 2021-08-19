@@ -18,10 +18,6 @@ function App() {
       <Container>
         <h1>Таблица пользователей</h1>
         <Table></Table>
-        <Button>
-          test
-        </Button>
-        <Checkbox></Checkbox>
       </Container>
   );
 }

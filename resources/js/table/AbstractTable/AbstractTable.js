@@ -30,6 +30,10 @@ export function AbstractTable(props) {
         if (!column.render)
             column.render = (item, i) => 
                 <TableCell key={i}>{item[column.property]}</TableCell>;
+        if(!column.renderHead)
+            column.renderHead = (item, i) => 
+                <TableHead key={i}>{item.title}</TableHead>;
+        
     }
     
     const renderRow_ = props.renderRow ?? renderRow;
@@ -41,7 +45,7 @@ export function AbstractTable(props) {
             <thead>
                 <tr>
                     { props.columns.map((item, i) => 
-                        <TableHead key={i}>{item.title}</TableHead>
+                        item.renderHead(item, i)
                     )}
                 </tr>
             </thead>

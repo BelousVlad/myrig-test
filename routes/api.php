@@ -20,6 +20,7 @@ use App\Models\Employee;
 //     return $request->user();
 // });
 
+
 Route::prefix('employees')->group(function() {
     Route::get('',function() {
 
@@ -41,8 +42,23 @@ Route::prefix('employees')->group(function() {
     });
 
     Route::delete('{id}',function($id) {
-        $employee = Employee::findOrFail($id);
+        $employee = Employee::with('position')->findOrFail($id);
         $employee->delete();
+
+        $employee->makeHidden('position_id');
+        $employee = $employee->toArray();
+        $employee['position'] = $employee['position']['title'];
+        
+        return response()->json($employee);
+    });
+    Route::delete('fake/{id}',function($id) {
+        $employee = Employee::with('position')->findOrFail($id);
+        // $employee->delete();
+        
+        $employee->makeHidden('position_id');
+        $employee = $employee->toArray();
+        $employee['position'] = $employee['position']['title'];
+        
         return response()->json($employee);
     });
 });
