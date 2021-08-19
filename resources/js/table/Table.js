@@ -23,30 +23,34 @@ export function Table() {
     }));
 
     return (
-        <AbstractTable className="table"
-         items={selectionItems.map(selected => selected.item)}
-            columns={[
-                { title: 'Выборка',
-                    render: (item, i) => ( 
-                        <TableCell>
-                            <Checkbox
-                                id={`checkbox_${i}`}
-                                checked={selectionItems[i].selected}
-                                onClick={() => setItems((state) => {
-                                    state[i].selected = !state[i].selected
-                                    return state;
-                                })}
-                            />
-                        </TableCell>
-                    )
-                    
-                },
-                { title: 'Название', property: 'title'},
-                { title: 'Рост', property: 'height',
-                    render: (item, i) =>    
-                        (<TableCell>{item.height / 10}</TableCell>)
-                },  
-            ]}
-        />
+            <AbstractTable className="table"
+            items={selectionItems.map(selected => selected.item)}
+                columns={[
+                    { title: 'Выборка',
+                        render: (item, i) => ( 
+                            <TableCell>
+                                <Checkbox
+                                    checked={selectionItems[i].selected}
+                                    onChange={() => { 
+                                        setItems((prevState) => {
+                                            const state = prevState.slice();
+                                            state[i].selected = !state[i].selected
+                                            return state;
+                                        })
+                                    }
+                                }
+                                />
+                            </TableCell>
+                        )
+                        
+                    },
+                    { title: 'Название', property: 'title'},
+                    { title: 'Рост', property: 'height',
+                        render: (item, i) =>    
+                            (<TableCell>{item.height / 10}</TableCell>)
+                    },  
+                ]}
+            />
+
     )
 }

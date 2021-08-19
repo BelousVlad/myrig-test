@@ -1,12 +1,36 @@
 import React from 'react';
+import styled from 'styled-components';
 
-import { Fragment } from "react"
+const Label = styled.label`
+    
+`;
+
+const CheckActive = styled.div`
+    color: red;
+    display: block;
+    width: 16px;
+    height: 16px;
+    /* background: #000; */
+    border: 2px solid #e8e8e8;
+    border-radius: 6px;
+`
+
+const Input = styled.input`
+    display: none;
+
+    & + .checkactive {
+        background: green;
+    }
+    &:checked + .checkactive{
+        background: red;
+    }
+`;
 
 export function Checkbox(props) {
     return (
-        <Fragment>
-            <input type="checkbox" id={props.id} onClick={props.onClick}/>
-            <label htmlFor={props.id}>123</label>
-        </Fragment>
+        <Label>
+            <Input type="checkbox" onChange={props.onChange} checked={props.checked}/>
+            <CheckActive className="checkactive"></CheckActive>
+        </Label>
     )
 }

@@ -4,6 +4,7 @@
 import React from 'react';
 import { Table } from './table/Table';
 import { Button} from './button/Button'
+import { Checkbox } from './checkbox/Checkbox'
 
 function App() {
 
@@ -14,6 +15,7 @@ function App() {
         <Button>
           test
         </Button>
+        <Checkbox></Checkbox>
       </div>
   );
 }
