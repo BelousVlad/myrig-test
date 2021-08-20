@@ -4,24 +4,19 @@ import { AbstractTable } from "./AbstractTable/AbstractTable";
 import { TableCell } from "./TableCell";
 import { Checkbox } from "../checkbox/Checkbox";
 import { Button } from "../button/Button";
+import { ChangeButton } from "../button/ChangeButton";
+import { DeleteButton } from "../button/DeleteButton";
 import styled from 'styled-components';
 
-// import './Table.css';
-
 import { useState } from 'react';
-import { EmployeeService } from '../services/employee-service';
 import { TableHead } from './TableHead';
 
-function getItems() {
-    return fetch('http://127.0.0.1:8000/api/employees')
-        .then(response => {
-            if(response.ok)
-            {
-                return response.json()
-            }
-        })
-        // .then(console.log)
-}
+const RemoveButtonContainer = styled.div`
+    display: block;
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 30px;
+`
 
 const StyledTable = styled(AbstractTable)`
     width: 100%;
@@ -45,11 +40,9 @@ const StyledTable = styled(AbstractTable)`
     }
 `;
 
-const employeeService = new EmployeeService();
-
 const columns = [
     { title: '№', render: (item, i) => 
-        <TableCell>{i+1}</TableCell>
+        <TableCell>{item.id}</TableCell>
     },
     { title: 'ФИО', render: (item, i) => 
         <TableCell>
@@ -76,21 +69,22 @@ const columns = [
     },  
 ]
 
-export function Table() {
+export function Table(props) {
 
     const [ selectionItems, setSelectionItems ] = useState([]);
+    const [ allSelect, setAllSelect ] = useState(false);
 
     useEffect(() => {
-        employeeService.getEmployees().then((items) => {
-            console.log(items)
-            setSelectionItems(items.map(item => 
-                ({ selected: false, item })
-                ))
-            }
-            )
-    }, [ setSelectionItems ]);
+        setSelectionItems(
+            props.items.map(item => { return { selected: false, item }})
+        )
+    }, [ props.items ])
 
-    // employeeService.deleteEmployee(2,false);
+    const removeSelected = () => {
+        props.removeItemsAll(...selectionItems.filter(item => item.selected).map(item => item.item))
+    }
+
+    const isButtonDisabled = selectionItems.filter(item => item.selected).length === 0;
 
     const select_render = (item, i) => (
         <TableCell>
@@ -107,8 +101,6 @@ export function Table() {
             />
         </TableCell>
     )
-
-    const [ allSelect, setAllSelect ] = useState(false);
 
     const select_head_render = (column) => 
         <TableHead>
@@ -130,12 +122,17 @@ export function Table() {
             render: select_render,
             renderHead: select_head_render,
         },
-        ...columns
+        ...columns,
+        {
+            title: '',
+            render: (item, i) => (
+                <TableCell>
+                    <ChangeButton></ChangeButton>
+                    <DeleteButton onClick={() => props.removeItemsAll(item)}></DeleteButton>
+                </TableCell>
+            )
+        }
     ];
-
-    const removeSelected = () => {
-        console.log(123)
-    }
 
     return (
         <Fragment>
@@ -143,7 +140,9 @@ export function Table() {
                 items={selectionItems.map(selected => selected.item)}
                 columns={table_columns}
                 />
-            <Button onClick={removeSelected}>Удалить выбраные элементы</Button>
+            <RemoveButtonContainer>
+                <Button disabled={isButtonDisabled} onClick={removeSelected}>Удалить выбраные</Button>
+            </RemoveButtonContainer>
         </Fragment>
     )
 }
