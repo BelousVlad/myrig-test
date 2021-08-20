@@ -4,7 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 use App\Models\Employee;
-
+use App\Http\Controllers\EmployeeController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -22,35 +22,16 @@ use App\Models\Employee;
 
 
 Route::prefix('employees')->group(function() {
-    Route::get('',function() {
+    Route::get('', [EmployeeController::class,'getEmployees']);
 
-        $empls = Employee::with('position')->get();
+    Route::delete('{id}', [EmployeeController::class, 'deleteEmployee', ['test']]);
 
-        foreach($empls as $emp)
-        {
-            $emp->makeHidden('position_id');
-        }
-        
-        $empls = $empls->toArray();
-        
-        foreach($empls as &$emp)
-        {
-            $emp['position'] = $emp['position']['title'];
-        }
-
-        return response()->json($empls);
-    });
-
-    Route::delete('{id}',function($id) {
-        $employee = Employee::with('position')->findOrFail($id);
-        $employee->delete();
-
-        $employee->makeHidden('position_id');
-        $employee = $employee->toArray();
-        $employee['position'] = $employee['position']['title'];
-        
-        return response()->json($employee);
-    });
+    //Симуляция удаления, 
+    /*
+        пункт 6 "Реализовывать удаление выбранных строк
+            по нажатию на эту кнопку не нужно.
+        "
+    */
     Route::delete('fake/{id}',function($id) {
         $employee = Employee::with('position')->findOrFail($id);
         // $employee->delete();

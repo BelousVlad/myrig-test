@@ -13,6 +13,7 @@ class EmployeeTest extends TestCase
     {
         $employee = Employee::factory()->create();
         $response = $this->delete('api/employees/'.$employee->id);
+        // var_dump($employee->id);
         //Удалён ли
         $this->assertDeleted($employee);
         //Тот ли json пришёл

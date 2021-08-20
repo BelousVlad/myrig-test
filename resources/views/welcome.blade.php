@@ -3,15 +3,9 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <style>
-            @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;900&display=swap');
-            </style>
-        <style>
-            @font-face {
-                font-family: 'Museo Sans';
-                src: url('../MuseoSansCyrl.otf');
-            }
-        </style>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700;900&display=swap" rel="stylesheet">
     </head>
     <body>
         <div id="root"></div>
