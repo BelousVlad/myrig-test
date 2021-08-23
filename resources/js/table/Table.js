@@ -77,7 +77,7 @@ export function Table(props) {
     useEffect(() => {
         setSelectionItems(
             props.items.map((item, i) => {
-                const itemIndex = selectionItems.findIndex(it => it.item.id === item.id) 
+                const itemIndex = selectionItems.findIndex(it => it.item === item) 
                 if (itemIndex != -1)
                     return { selected: selectionItems[itemIndex].selected, item };
                 return { selected: false, item }
