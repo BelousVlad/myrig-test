@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Table } from './table/Table';
 import styled from 'styled-components';
-import { EmployeeService } from './services/employee-service';
+import { EmployeeService } from './services/EmployeeService';
 // import '../css/fonts.css';
 
 const employeeService = new EmployeeService();

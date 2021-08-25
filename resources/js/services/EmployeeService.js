@@ -1,4 +1,4 @@
-import { convert } from './employee-convert'
+import { convert } from './EmployeeConvert'
 
 export class EmployeeService {
 
