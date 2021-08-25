@@ -86,7 +86,7 @@ export function Table(props) {
     }, [ props.items ])
 
     const removeSelected = () => {
-        props.removeItemsAll(...selectionItems.filter(item => item.selected).map(item => item.item))
+        // props.removeItemsAll(...selectionItems.filter(item => item.selected).map(item => item.item))
     }
 
     const isButtonDisabled = selectionItems.filter(item => item.selected).length === 0;

@@ -17,8 +17,8 @@ export class EmployeeService {
         .then(items => items.map(convert))
     }
 
-    deleteEmployee(id, doDelete = false) {
-        const url = doDelete ? `${this.base_url}employees/${id}` : `${this.base_url}employees/fake/${id}`;
+    deleteEmployee(id) {
+        const url = `${this.base_url}employees/${id}`;
         return fetch(url, {
             method: 'DELETE',
         })
